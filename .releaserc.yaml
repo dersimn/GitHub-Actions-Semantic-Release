@@ -1,0 +1,5 @@
+# override default plugins to remove npm
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/release-notes-generator"
+  - "@semantic-release/github"

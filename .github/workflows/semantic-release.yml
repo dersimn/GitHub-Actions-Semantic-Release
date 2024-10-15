@@ -1,0 +1,24 @@
+name: Semantic Release
+run-name: ${{ github.ref_name }} (${{github.ref_type}}, triggered by ${{ github.event_name }})
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      # Run on every branch
+      - '**'
+      # Except branches beginning with:
+      - '!fail/**'
+      - '!dead-end/**'
+      - '!trash/**'
+
+jobs:
+  semantic-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.TEST_TOKEN }}
