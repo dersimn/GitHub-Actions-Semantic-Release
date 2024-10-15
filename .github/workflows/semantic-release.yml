@@ -1,6 +1,9 @@
 name: Semantic Release
 run-name: ${{ github.ref_name }} (${{github.ref_type}}, triggered by ${{ github.event_name }})
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   push:
