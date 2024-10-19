@@ -23,7 +23,7 @@ For clean testing, re-create the Repository on GitHub when it gets to polluted w
     gh secret set PERSONAL_ACCESS_TOKEN --body '<TOKEN>'
 
     git tag | xargs git tag -d
-    git push
+    git push -u origin master
 
 
 # Links
