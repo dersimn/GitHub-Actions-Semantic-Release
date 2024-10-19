@@ -1,0 +1,27 @@
+name: Dummy Workflow
+run-name: ${{ github.ref_name }} (${{github.ref_type}}, triggered by ${{ github.event_name }})
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      # Run on every branch
+      - '**'
+      # Except branches beginning with:
+      - '!fail/**'
+      - '!dead-end/**'
+      - '!trash/**'
+    tags:
+      - '**'
+  pull_request:
+    types: [opened, synchronize, reopened]
+  release:  # Tags created by Semantic Releases will use the release event
+    types: [published]
+
+jobs:
+  dummy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy Echo
+        run: |
+          echo Möp

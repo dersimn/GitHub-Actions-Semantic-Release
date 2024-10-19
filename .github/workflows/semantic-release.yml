@@ -1,6 +1,11 @@
 name: Semantic Release
 run-name: ${{ github.ref_name }} (${{github.ref_type}}, triggered by ${{ github.event_name }})
 
+permissions:  # Permissions are needed even if this is used with a Personal Access Token
+  contents: write
+  issues: write
+  pull-requests: write
+
 on:
   workflow_dispatch:
   push:
@@ -21,4 +26,7 @@ jobs:
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         env:
-          GITHUB_TOKEN: ${{ secrets.TEST_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          # Using GITHUB_TOKEN __won't__ trigger following Workflows
+          # see: https://github.com/orgs/community/discussions/55906
+          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
